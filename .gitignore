@@ -1,10 +1,10 @@
 # Ignore configuration files that may contain sensitive information.
-sites/*/*settings*.php
+#sites/*/*settings*.php
 
 # Ignore paths that contain generated content.
 cache/
-files/
-sites/*/files
+#files/
+#sites/*/files
 sites/*/private
 sites/*/.sass-cache
 sites/all/themes/wv/.sass-cache/
