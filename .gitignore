@@ -6,6 +6,8 @@ cache/
 files/
 sites/*/files
 sites/*/private
+sites/*/.sass-cache
+sites/all/themes/wv/.sass-cache/
 
 # Ignore default text files
 .htaccess
