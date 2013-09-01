@@ -28,43 +28,44 @@
 */
 .navigation {
   margin: 0;
-  /* Main menu */
-  /* Secondary menu */ }
+  /* Main menu */ }
   .navigation .primary-menu ul,
   .navigation .second-menu ul {
-    margin: 26px 0px; }
-    .navigation .primary-menu ul li.first a,
-    .navigation .second-menu ul li.first a {
-      -moz-border-radius: 8px 0 0 8px;
-      -webkit-border-radius: 8px 0 0 8px;
-      -khtml-border-radius: 8px 0 0 8px;
-      border-radius: 8px 0 0 8px;
-      /* LTR */ }
-    .navigation .primary-menu ul li.last a,
-    .navigation .second-menu ul li.last a {
-      -moz-border-radius: 0 8px 8px 0;
-      -webkit-border-radius: 0 8px 8px 0;
-      -khtml-border-radius: 0 8px 8px 0;
-      border-radius: 0 8px 8px 0;
-      /* LTR */ }
-  .navigation .primary-menu ul li a {
-    background-color: #000000;
-    color: #ffffff; }
-    .navigation .primary-menu ul li a.active, .navigation .primary-menu ul li a:hover {
-      background-color: #ffffff; }
-    .navigation .primary-menu ul li a.active {
-      color: #2698F2; }
-    .navigation .primary-menu ul li a:hover {
-      color: #000000; }
+    margin: 2px 0 5px 0;
+                                           /*
+margin: 4px 0px;
+li {
+  &.first a {
+    @include rounded-corners(8px 0 0 8px); /* LTR * /
+  }
+  &.last a {
+    @include rounded-corners(0 8px 8px 0); /* LTR * /
+  }
+}*/ }
+  .navigation .primary-menu ul li.last a,
+  .navigation .second-menu ul li.last a,
+  .navigation .primary-menu ul li.first a,
+  .navigation .second-menu ul li.first a,
+  .navigation .second-menu ul li a:hover,
+  .navigation .primary-menu ul li a:hover {
+    border: none;
+    border-top: none;
+    border-bottom: none; }
+  .navigation .primary-menu ul li a,
   .navigation .second-menu ul li a {
-    background-color: #ffffff;
-    color: #000000; }
-    .navigation .second-menu ul li a.active, .navigation .second-menu ul li a:hover {
-      background-color: #000000; }
-    .navigation .second-menu ul li a.active {
-      color: #2698F2; }
+    border: none;
+    background-color: transparent;
+    color: #ffffff; }
+    .navigation .primary-menu ul li a.active, .navigation .primary-menu ul li a:hover,
+    .navigation .second-menu ul li a.active,
     .navigation .second-menu ul li a:hover {
-      color: #ffffff; }
+      background-color: rgba(255, 255, 255, 0.3); }
+    .navigation .primary-menu ul li a.active,
+    .navigation .second-menu ul li a.active {
+      color: inherit; }
+    .navigation .primary-menu ul li a:hover,
+    .navigation .second-menu ul li a:hover {
+      color: rgba(0, 0, 0, 0.6); }
 
 /**************************************************
 * --
@@ -119,3 +120,7 @@
 */
 .view-collection-taxonomy-term .view-content .item-list h3 span {
   top: -90px; }
+
+/* World Vision */
+#section-content {
+  margin-top: 10px; }

@@ -33,46 +33,44 @@
   margin: 0;
   .primary-menu ul,
   .second-menu ul {
-    margin: 26px 0px;
+    margin: 2px 0 5px 0;
+    /*
+    margin: 4px 0px;
     li {
       &.first a {
-        @include rounded-corners(8px 0 0 8px); /* LTR */
+        @include rounded-corners(8px 0 0 8px); /* LTR * /
       }
       &.last a {
-        @include rounded-corners(0 8px 8px 0); /* LTR */
+        @include rounded-corners(0 8px 8px 0); /* LTR * /
       }
-    }
+    }*/
   }
   /* Main menu */
-  .primary-menu ul li a {
-    background-color: #000000;
+  .primary-menu ul li.last a,
+  .second-menu ul li.last a,
+  .primary-menu ul li.first a,
+  .second-menu ul li.first a,
+  .second-menu ul li a:hover,
+  .primary-menu ul li a:hover {
+    border: none;
+    border-top: none;
+    border-bottom: none;
+  }
+  .primary-menu ul li a,
+  .second-menu ul li a {
+    border: none;
+    background-color: transparent;
     color: #ffffff;
 
     &.active,
     &:hover {
-      background-color: #ffffff;
+      background-color: rgba(255,255,255,0.3);
     }
     &.active {
-      color: #2698F2;
+      color: inherit;
     }
     &:hover {
-      color: #000000;
-    }
-  }
-/* Secondary menu */
-  .second-menu ul li a {
-    background-color: #ffffff;
-    color: #000000;
-
-    &.active,
-    &:hover {
-      background-color: #000000;
-    }
-    &.active {
-      color: #2698F2;
-    }
-    &:hover {
-      color: #ffffff;
+      color: rgba(0,0,0,0.6);
     }
   }
 }
@@ -131,3 +129,7 @@
     }
   }
 }
+
+
+/* World Vision */
+#section-content { margin-top: 10px; }

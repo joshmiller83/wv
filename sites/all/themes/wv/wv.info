@@ -1,4 +1,4 @@
-name = Commerce Kickstart Theme
+name = World Vision Demo Theme
 description = ''
 package = Commerce Kickstart
 core = 7.x
@@ -56,18 +56,18 @@ zones[footer2] = Footer second
 
 ; OPTIONAL STYLESHEETS
 
-css[commerce_kickstart_style.css][name] = Commerce Kickstart theme global style.
-css[commerce_kickstart_style.css][description] = This file holds all the globally active custom CSS of Commerce Kickstart theme.
-css[commerce_kickstart_style.css][options][weight] = 11
-settings[alpha_css][commerce_kickstart_style.css] = 'commerce_kickstart_style.css'
+css[wv_style.css][name] = Commerce Kickstart theme global style.
+css[wv_style.css][description] = This file holds all the globally active custom CSS of Commerce Kickstart theme.
+css[wv_style.css][options][weight] = 11
+settings[alpha_css][wv_style.css] = 'wv_style.css'
 
 ; OPTIONAL LIBRARIES
 
-libraries[commerce_kickstart_theme_custom][name] = Commerce kickstart theme JS
-libraries[commerce_kickstart_theme_custom][description] = This file holds all the custom JS.
-libraries[commerce_kickstart_theme_custom][js][0][file] = commerce_kickstart_theme_custom.js
-libraries[commerce_kickstart_theme_custom][js][0][options][weight] = 15
-settings[alpha_libraries][commerce_kickstart_theme_custom] = 'commerce_kickstart_theme_custom'
+libraries[wv_theme_custom][name] = Commerce kickstart theme JS
+libraries[wv_theme_custom][description] = This file holds all the custom JS.
+libraries[wv_theme_custom][js][0][file] = wv_theme_custom.js
+libraries[wv_theme_custom][js][0][options][weight] = 15
+settings[alpha_libraries][wv_theme_custom] = 'wv_theme_custom'
 
 ; THEME SETTINGS (DEFAULTS)
 
@@ -423,6 +423,6 @@ settings[alpha_region_footer2_second_css] = ''
 ; Information added by drupal.org packaging script on 2013-07-26
 version = "7.x-2.9"
 core = "7.x"
-project = "commerce_kickstart"
+project = "wv"
 datestamp = "1374852667"
 

@@ -1,5 +1,6 @@
 /* This file will hold styles for the mobile version of your website (mobile first). */
-/* This also can include ANY global CSS that applies site-wide. Unless overwritten by a more specific style rule, CSS declarations in global.css will apply site-wide. */
+/* This also can include ANY global CSS that applies site-wide. Unless overwritten by a more
+specific style rule, CSS declarations in global.css will apply site-wide. */
 /* Override Omega */
 
 /* Include Default Variables & Mixins */
@@ -100,10 +101,10 @@ body {
 */
 .block-shopping-cart-block .content {
   background-color: #ffffff;
-  background-image: url('../images/picto_cart.png');
+  background-image: url('../new_img/cart.png');
 
   .view-shopping-cart .line-item-summary ul.links {
-    background-color: #2698F2;
+    background-color: #f07830;
   }
 }
 /**************************************************
@@ -152,7 +153,7 @@ body {
 */
 #promotional_banner {
 /* HP blocks: Top advert */
-  background-color: #2698F2;
+  background-color: #f07830;
   color: #FFFFFF;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -172,7 +173,7 @@ body {
     background-color: #FFFFFF;
     border: 1px solid #CCC;
     @include rounded-corners(4px);
-    color: #2698F2;
+    color: #f07830;
     font-size: 14px;
     font-weight: 700;
     padding: 4px 12px;
@@ -187,7 +188,7 @@ body {
   #shipping {
     background-color: #000000;
     border: 6px solid #ffffff;
-    color: #2698F2;
+    color: #f07830;
     display: block;
     font-size: 13px;
     line-height: 24px;
@@ -383,11 +384,11 @@ div.messages.commerce-add-to-cart-confirmation {
 
   .message-inner {
     .added-product-title {
-      color: #2698f2;
+      color: #f07830;
     }
     .button-wrapper .button {
       &.checkout {
-        background-color: #2698F2;
+        background-color: #f07830;
       }
       &.continue {
         background-color: #b3b3b3;
@@ -441,4 +442,38 @@ div.messages.commerce-add-to-cart-confirmation {
   #edit-oauthconnector-google {
     background:url('../images/btn_google.png') no-repeat;
   }
+}
+
+/**************************************************
+* --
+* 10. World Vision
+* --
+**************************************************/
+
+#zone-content-wrapper {
+  padding-top: 15px;
+}
+.breadcrumb {
+  margin-top: 0;
+}
+body {
+  background-image: none;
+}
+#zone-menu-wrapper {
+  background: #fe8b16;
+  background-image: linear-gradient(to bottom, #fda425, #ff6600);
+  background-repeat: repeat-x;
+}
+header#section-header {
+  background: #FFF;
+  .block-lang-dropdown {
+    float: right;
+    padding: 5px 0 0 24px;
+    .form-item {
+      margin: 0;
+    }
+  }
+}
+.block-shopping-cart-block .content .view-shopping-cart .line-item-summary .line-item-quantity {
+  color: #f07830;
 }
