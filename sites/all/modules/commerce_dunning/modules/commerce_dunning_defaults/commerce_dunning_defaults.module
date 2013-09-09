@@ -1,0 +1,105 @@
+<?php
+
+/**
+ * @file
+ * Provides sensible default configuration for Commerce Dunning.
+ */
+
+/**
+ * Machine name of the entity reference field that is attached to message types.
+ */
+define('COMMERCE_DUNNING_DEFAULTS_MESSAGE_ORDER_REFERENCE_FIELD', 'commerce_dunning_message_order');
+
+/**
+ * Implements hook_default_message_type().
+ *
+ * Provides the following three message types:
+ *   - Commerce Dunning: card data needs to be updated
+ *   - Commerce Dunning: hard declined card
+ *   - Commerce Dunning: soft declined card
+ *
+ * @todo Refine content of the messages.
+ * @todo Fix incorrect token values when messages are sent during a cron run.
+ */
+function commerce_dunning_defaults_default_message_type() {
+  $items = array();
+  $items['commerce_dunning_card_data_needs_update'] = entity_import('message_type', '{
+    "name" : "commerce_dunning_card_data_needs_update",
+    "description" : "Commerce Dunning: card data needs to be updated",
+    "argument_keys" : [],
+    "argument" : [],
+    "category" : "message_type",
+    "data" : {
+      "token options" : { "clear" : 0 },
+      "purge" : { "override" : 0, "enabled" : 0, "quota" : "", "days" : "" }
+    },
+    "language" : "",
+    "arguments" : null,
+    "message_text" : { "und" : [
+        {
+          "value" : "[[site:name]] Please update your credit card information",
+          "format" : "filtered_html",
+          "safe_value" : "\\u003Cp\\u003E[[site:name]] Please update your credit card information\\u003C\\/p\\u003E\\n"
+        },
+        {
+          "value" : "\\u003Ca href=\\u0022[site:url]\\u0022\\u003E[site:site-logo]\\u003C\\/a\\u003E\\r\\n\\r\\n\\u003Cp\\u003EPlease update your credit card information.\\u003C\\/p\\u003E\\r\\n\\u003Cp\\u003E\\u003Ca href=\\u0022[message:commerce-dunning-message-order:view-url]\\u0022\\u003EView your order\\u003C\\/a\\u003E\\u003C\\/p\\u003E",
+          "format" : "full_html",
+          "safe_value" : "\\u003Cp\\u003E\\u003Ca href=\\u0022[site:url]\\u0022\\u003E[site:site-logo]\\u003C\\/a\\u003E\\u003C\\/p\\u003E\\n\\u003Cp\\u003EPlease update your credit card information.\\u003C\\/p\\u003E\\n\\u003Cp\\u003E\\u003Ca href=\\u0022[message:commerce-dunning-message-order:view-url]\\u0022\\u003EView your order\\u003C\\/a\\u003E\\u003C\\/p\\u003E\\n"
+        }
+      ]
+    }
+  }');
+  $items['commerce_dunning_hard_declined_card'] = entity_import('message_type', '{
+    "name" : "commerce_dunning_hard_declined_card",
+    "description" : "Commerce Dunning: hard declined card",
+    "argument_keys" : [],
+    "argument" : [],
+    "category" : "message_type",
+    "data" : {
+      "token options" : { "clear" : 0 },
+      "purge" : { "override" : 0, "enabled" : 0, "quota" : "", "days" : "" }
+    },
+    "language" : "",
+    "arguments" : null,
+    "message_text" : { "und" : [
+        {
+          "value" : "[[site:name]] Payment failed",
+          "format" : "filtered_html",
+          "safe_value" : "\\u003Cp\\u003E[[site:name]] Payment failed\\u003C\\/p\\u003E\\n"
+        },
+        {
+          "value" : "\\u003Ca href=\\u0022[site:url]\\u0022\\u003E[site:site-logo]\\u003C\\/a\\u003E\\r\\n\\r\\n\\u003Cp\\u003EYour payment was declined. Please modify your credit card information.\\u003C\\/p\\u003E\\r\\n\\u003Cp\\u003E\\u003Ca href=\\u0022[message:commerce-dunning-message-order:view-url]\\u0022\\u003EView your order\\u003C\\/a\\u003E\\u003C\\/p\\u003E",
+          "format" : "full_html",
+          "safe_value" : "\\u003Cp\\u003E\\u003Ca href=\\u0022[site:url]\\u0022\\u003E[site:site-logo]\\u003C\\/a\\u003E\\u003C\\/p\\u003E\\n\\u003Cp\\u003EYour payment was declined. Please modify your credit card information.\\u003C\\/p\\u003E\\n\\u003Cp\\u003E\\u003Ca href=\\u0022[message:commerce-dunning-message-order:view-url]\\u0022\\u003EView your order\\u003C\\/a\\u003E\\u003C\\/p\\u003E\\n"
+        }
+      ]
+    }
+  }');
+  $items['commerce_dunning_soft_declined_card'] = entity_import('message_type', '{
+    "name" : "commerce_dunning_soft_declined_card",
+    "description" : "Commerce Dunning: soft declined card",
+    "argument_keys" : [],
+    "argument" : [],
+    "category" : "message_type",
+    "data" : {
+      "token options" : { "clear" : 0 },
+      "purge" : { "override" : 0, "enabled" : 0, "quota" : "", "days" : "" }
+    },
+    "language" : "",
+    "arguments" : null,
+    "message_text" : { "und" : [
+        {
+          "value" : "[[site:name]] Payment failed",
+          "format" : "filtered_html",
+          "safe_value" : "\\u003Cp\\u003E[[site:name]] Payment failed\\u003C\\/p\\u003E\\n"
+        },
+        {
+          "value" : "\\u003Ca href=\\u0022[site:url]\\u0022\\u003E[site:site-logo]\\u003C\\/a\\u003E\\r\\n\\r\\n\\u003Cp\\u003EYour payment was declined. We will try and charge your card again soon.\\u003C\\/p\\u003E\\r\\n\\u003Cp\\u003E\\u003Ca href=\\u0022[message:commerce-dunning-message-order:view-url]\\u0022\\u003EView your order\\u003C\\/a\\u003E\\u003C\\/p\\u003E",
+          "format" : "full_html",
+          "safe_value" : "\\u003Cp\\u003E\\u003Ca href=\\u0022[site:url]\\u0022\\u003E[site:site-logo]\\u003C\\/a\\u003E\\u003C\\/p\\u003E\\n\\u003Cp\\u003EYour payment was declined. We will try and charge your card again soon.\\u003C\\/p\\u003E\\n\\u003Cp\\u003E\\u003Ca href=\\u0022[message:commerce-dunning-message-order:view-url]\\u0022\\u003EView your order\\u003C\\/a\\u003E\\u003C\\/p\\u003E\\n"
+        }
+      ]
+    }
+  }');
+  return $items;
+}

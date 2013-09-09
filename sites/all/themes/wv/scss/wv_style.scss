@@ -101,7 +101,12 @@ body {
 */
 .block-shopping-cart-block .content {
   background-color: #ffffff;
-  background-image: url('../new_img/cart.png');
+  padding-left: 4px;
+  background-image: none;
+  .line-item-quantity {
+    background: url('../new_img/cart.png') left 5px no-repeat;
+    padding-left: 35px;
+  }
 
   .view-shopping-cart .line-item-summary ul.links {
     background-color: #f07830;
@@ -476,4 +481,199 @@ header#section-header {
 }
 .block-shopping-cart-block .content .view-shopping-cart .line-item-summary .line-item-quantity {
   color: #f07830;
+}
+.cart-link {
+  display: block;
+  height: 34px;
+}
+.block-1 {
+  .need-help {
+    background: #eff0f1;
+    border: 1px solid #DCDDDE;
+    padding: 10px;
+    height: 43px;
+    margin-bottom: 20px;
+    .nh-main {
+      float: left;
+      width: 59%;
+      font-size: 110%;
+      .nh-text {
+        font-weight: bold;
+        font-size: 125%;
+      }
+    }
+    .nh-secondary {
+      float: right;
+      width: 40%;
+      font-size: 85%;
+      color: #666567;
+      text-align: right;
+    }
+  }
+  .bottom_imgs {
+    background: url(../new_img/imgs_bottom.png) center center no-repeat;
+    height: 82px;
+    border: 1px solid #DCDDDE;
+  }
+}
+.responsive-layout-narrow .block-2 {
+  .block-inner > .content .returning input {
+    width: 141px;
+  }
+  h3.guest-header {
+    font-weight: bold;
+    font-size: 14px;
+  }
+}
+.block-2 {
+  border: 1px solid #DCDDDE;
+  margin-bottom: 20px;
+  .block-inner > .content {
+    padding: 20px;
+    .guest {
+      float: left;
+      width: 40%;
+      margin-right: 20px;
+      padding-right: 10px;
+      border-right: 1px solid #DCDDDE;
+      a {
+        display: block;
+        line-height: normal;
+        color: #FFF;
+        width: 110px;
+        text-align: center;
+        font-size: 16px;
+        background: #ff6600;
+        border-radius: 4px;
+        padding: 2px 0;
+        &:hover {
+          background: #ff9046;
+        }
+      }
+      .guest-continue {
+        margin-top: 14px;
+      }
+      .guest-text {
+        line-height: normal;
+        font-size: 13px;
+      }
+    }
+    .returning {
+      input {
+        width: 213px;
+      }
+      .returning-row {
+        margin-bottom: 14px;
+      }
+      .returning-buttons {
+        margin-top: 28px;
+        .returning-signin {
+          display: inline-block;
+          line-height: normal;
+          color: #FFF;
+          width: 80px;
+          text-align: center;
+          font-size: 16px;
+          background: #ff6600;
+          border-radius: 4px;
+          padding: 2px 0;
+          margin-right: 10px;
+          &:hover {
+            background: #ff9046;
+          }
+        }
+        a {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  h2.block-title {
+    background-color: #005888;
+    background-image: linear-gradient(to bottom, #003c5c, #005888);
+    color: #FFF;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 16px;
+    padding: 5px 8px;
+  }
+  h3.guest-header {
+    font-weight: normal;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+}
+.node-product-type .field-type-commerce-product-reference form.commerce-add-to-cart .form-submit {
+  background-color: #069;
+  line-height: 14px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 4px 8px;
+  border: 2px outset buttonface;
+  background-image: none;
+  &.give-now {
+    color: #FFF;
+    background-color: #FF6600;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    padding: 4px 16px;
+  }
+}
+.node-type-donation-product article.node .field-name-field-product form.commerce-add-to-cart {
+  padding-top: 20px;
+  label {
+    float: none;
+    &:after {
+      content: none;
+    }
+  }
+  .select-or-other {
+    position: relative;
+  }
+  .form-item {
+    padding-bottom: 5px;
+  }
+  .form-radios .form-item {
+    label:before {
+      content: '$';
+    }
+    &:last-child {
+      label:before {
+        content: none;
+      }
+      label:after {
+        content: ' $';
+      }
+    }
+  }
+  .form-item-line-item-fields-field-donation2-und-other {
+    display: block !important;
+    width: 150px;
+    position: absolute;
+    bottom: 0;
+    left: 70px;
+  }
+  .form-submit {
+    margin-top: 15px;
+  }
+}
+.node-type-donation-product #edit-product-id {
+  display: none;
+}
+.node-product-type .field-type-commerce-product-reference {
+  padding-bottom: 20px;
+}
+.node-type-sponsor-a-child article.node {
+  .field-name-body {
+    margin-bottom: 0;
+    p {
+      margin-bottom: 0;
+    }
+  }
+  .field-name-field-recurring-product form.commerce-add-to-cart {
+    background: none;
+    padding-top: 0;
+  }
 }

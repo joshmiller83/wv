@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for Commerce Dunning Defaults.
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function commerce_dunning_defaults_enable() {
+  // Make sure we're in a non-cached environment.
+  entity_info_cache_clear();
+  field_cache_clear();
+  // Ensure the order reference field's and its instances existance.
+  commerce_dunning_defaults_enable_ensure_order_reference_field();
+}
+
+/**
+ * Ensures the order reference field's and its instances' existence.
+ *
+ * Creates or updates the entity reference field that can reference orders, and
+ * attaches it to all message types (bundles) if it's not attached already.
+ */
+function commerce_dunning_defaults_enable_ensure_order_reference_field() {
+  // Define the field.
+  $field = array(
+    'field_name' => COMMERCE_DUNNING_DEFAULTS_MESSAGE_ORDER_REFERENCE_FIELD,
+    'type' => 'entityreference',
+    'module' => 'entityreference',
+    'translatable' => FALSE,
+    'settings' => array(
+      'target_type' => 'commerce_order',
+      'handler' => 'base',
+      'handler_settings' => array(),
+    ),
+  );
+  if (field_info_field($field['field_name'])) {
+    // Update the field if it already exists.
+    field_update_field($field);
+  }
+  else {
+    // Create the field if it doesn't exist yet.
+    field_create_field($field);
+  }
+
+  // Define common instance settings. Only the bundle name will differ.
+  $instance = array(
+    'field_name' => $field['field_name'],
+    'entity_type' => 'message',
+    'label' => t('Order'),
+    'required' => TRUE,
+    'settings' => array(),
+    'display' => array(),
+    'widget' => array(
+      'type' => 'entityreference_autocomplete',
+      'module' => 'entityreference',
+    ),
+  );
+  // The field needs to be attached to the following message types.
+  $message_types = array(
+    'commerce_dunning_card_data_needs_update',
+    'commerce_dunning_hard_declined_card',
+    'commerce_dunning_soft_declined_card',
+  );
+  foreach ($message_types as $type) {
+    $instance['bundle'] = $type;
+    if (field_info_instance($instance['entity_type'], $instance['field_name'], $type)) {
+      // Update the field instance if it already exists.
+      field_update_instance($instance);
+    }
+    else {
+      // Create the field instance if it doesn't exist yet.
+      field_create_instance($instance);
+    }
+  }
+}

@@ -1,0 +1,13 @@
+core = "7.x"
+dependencies[] = "search_api"
+dependencies[] = "entity_translation"
+description = "Add support to search API for searching multilingual content managed via entity translation module."
+name = "Search API Entity Translation"
+package = Search
+
+; Information added by drupal.org packaging script on 2013-05-25
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "search_api_et"
+datestamp = "1369452821"
+

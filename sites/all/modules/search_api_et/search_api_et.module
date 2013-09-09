@@ -1,0 +1,105 @@
+<?php
+
+/**
+ * @file
+ * Offers simple support for search api for searching in multilingual nodes
+ * translated with the entity translation module.
+ *
+ * ToDos:
+ * - Make different language versions of a content distinguishable for search.
+ */
+
+
+/**
+ * Implements hook_entity_property_info_alter().
+ *
+ * Adds entity property for handling
+ * field-translation based multi-language indexing
+ */
+function search_api_et_entity_property_info_alter(&$info) {
+  foreach (search_api_et_entity_types() as $etype => $einfo) {
+    $info[$etype]['properties']['unified_fulltext'] = array(
+      'type' => 'text',
+      'label' => t('Multilingual full text (all languages via entity translation)'),
+      'sanitized' => TRUE,
+      'getter callback' => 'search_api_et_fulltext_get',
+    );
+  }
+}
+
+
+/**
+ * Getter callback for fulltext property.
+ *
+ * Concatenate the entity rendering for all its language versions/translations.
+ */
+function search_api_et_fulltext_get($item, $options, $name, $type, $info) {
+  $view_mode = variable_get('search_api_et_fulltext_get_viewmode_' . $type, 'search_index');
+
+  // If no translations are managed for this entity (i.e. ET is not activated),
+  // do nothing.
+  if (!is_array($item->translations->data)) {
+    return;
+  }
+
+  // Iterate through the $item->translations to render the entity in each lang.
+  $fulltext = '';
+  foreach ($item->translations->data as $langcode => $translation) {
+    if ($translation['status']) {
+      $render = entity_view($type, array($item), $view_mode, $langcode);
+      $context = array('item' => $item, 'options' => $options, 'name' => $name, 'type' => $type, 'view_mode' => $view_mode, 'language' => $langcode);
+      // Invoke some hooks, before or after the rendering, for alterations.
+      drupal_alter('search_api_et_fulltext_prerender', $render, $context);
+      $render = drupal_render($render);
+      drupal_alter('search_api_et_fulltext_postrender', $render, $context);
+      $fulltext .= $render;
+    }
+  }
+
+  return $fulltext;
+}
+
+
+/**
+ * Implements hook_entity_translation_save().
+ *
+ * Trigger re-indexing of content when translation changes.
+ */
+function search_api_et_entity_translation_save($entity_type, $entity, $langcode) {
+  search_api_entity_update($entity, $entity_type);
+}
+
+
+/**
+ * Implements hook_entity_info_alter().
+ *
+ * (re-) declare search_index view mode
+ * (which is not available when core search is disabled (as it can be here)
+ */
+function search_api_et_entity_info_alter(&$entity_info) {
+  foreach (search_api_et_entity_types() as $etype => $einfo) {
+    $entity_info[$etype]['view modes']['search_index']
+      = array(
+              'label' => t('Search index'),
+              'custom settings' => FALSE,
+            );
+  }
+}
+
+
+/**
+ * Helper function to list all entity types supported by entity translation.
+ *
+ */
+function search_api_et_entity_types() {
+  $entity_types = array();
+  foreach (entity_get_info() as $entity_type => $entity_data) {
+    if (entity_translation_enabled($entity_type)) {
+      $entity_types[$entity_type] = $entity_data;
+    }
+  }
+  return $entity_types;
+}
+
+
+/* END OF FILE marker for fewer merge conflicts. */

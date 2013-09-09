@@ -22,6 +22,7 @@
  */
 ?>
 <div class="line-item-summary">
+<a href="<?php echo url("cart"); ?>" class="cart-link">
   <?php if ($quantity_raw): ?>
   <div class="line-item-quantity">
     <span class="line-item-quantity-raw"><?php print $quantity_raw; ?></span>
@@ -33,10 +34,5 @@
     <span class="line-item-total-label"><?php print $total_label; ?></span> <span class="line-item-total-raw"><?php print $total; ?></span>
   </div>
   <?php endif; ?>
-  <ul class="links inline">
-    <li class="line-item-summary-checkout first last active">
-      <?php echo l('View Basket',"cart"); ?>
-    </li>
-  </ul>
-
+</a>
 </div>

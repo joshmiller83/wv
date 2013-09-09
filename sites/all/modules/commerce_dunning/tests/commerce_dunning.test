@@ -1,0 +1,139 @@
+<?php
+
+/**
+ * @file
+ * Tests for Commerce Dunning.
+ */
+
+class CommerceDunningTestCase extends CommerceBaseTestCase {
+
+  /**
+   * A dummy order to use in the tests.
+   */
+  private $order;
+
+  /**
+   * Implements getInfo().
+   */
+  public static function getInfo() {
+    return array(
+      'name' => 'Commerce Dunning',
+      'description' => 'Tests functionality of Commerce Dunning.',
+      'group' => 'Commerce Dunning',
+    );
+  }
+
+  /**
+   * Implements setUp().
+   */
+  public function setUp() {
+    $modules = $this->setUpHelper('all', array('commerce_dunning_defaults', 'commerce_dunning_testing'));
+    parent::setUp($modules);
+
+    // Disable Clean URIs to ensure drupal.org testbot compatibility.
+    variable_set('clean_url', 0);
+
+    // Creates a dummy order.
+    $this->order = $this->createDummyOrder();
+  }
+
+  /**
+   * Tests a hard declined failure.
+   */
+  public function testHardDecline() {
+    $card_data_response = array(
+      'code' => COMMERCE_COF_PROCESS_CODE_INSUFFICIENT_DATA,
+    );
+    rules_invoke_event('commerce_cardonfile_charge_failed', NULL, $this->order, NULL, $card_data_response);
+
+    // Assert that the customer has been notified about the hard decline.
+    $this->assertDunningNotification('message_notify_commerce_dunning_hard_declined_card', t('Hard decline notification is sent'));
+
+    // Assert that charge attempts, the dunning cycle ending action and further
+    // hard decline notifications (asking customer to update card) are
+    // scheduled.
+    $tasks = array(
+      'dunning-' . $this->order->order_id . '-charge-attempt-3-days',
+      'dunning-' . $this->order->order_id . '-charge-attempt-6-days',
+      'dunning-' . $this->order->order_id . '-charge-attempt-9-days',
+      'dunning-' . $this->order->order_id . '-charge-attempt-12-days',
+      'dunning-' . $this->order->order_id . '-end-15-days',
+      'dunning-' . $this->order->order_id . '-hard-decline-notification-2-days',
+      'dunning-' . $this->order->order_id . '-hard-decline-notification-5-days',
+      'dunning-' . $this->order->order_id . '-hard-decline-notification-8-days',
+      'dunning-' . $this->order->order_id . '-hard-decline-notification-11-days',
+    );
+    $this->assertDunningTaskScheduled($tasks);
+  }
+
+  /**
+   * Tests a hard declined failure.
+   */
+  public function testSoftDecline() {
+    $card_data_response = array(
+      'code' => COMMERCE_COF_PROCESS_CODE_METHOD_FAILURE_INSUFFICIENT_FUNDS,
+    );
+    rules_invoke_event('commerce_cardonfile_charge_failed', NULL, $this->order, NULL, $card_data_response);
+
+    // Assert that the customer has been notified about the soft decline.
+    $this->assertDunningNotification('message_notify_commerce_dunning_soft_declined_card', t('Soft decline notification is sent'));
+
+    // Assert that charge attempt, and the dunning cycle ending action are
+    // scheduled.
+    $tasks = array(
+      'dunning-' . $this->order->order_id . '-charge-attempt-3-days',
+      'dunning-' . $this->order->order_id . '-charge-attempt-6-days',
+      'dunning-' . $this->order->order_id . '-charge-attempt-9-days',
+      'dunning-' . $this->order->order_id . '-charge-attempt-12-days',
+      'dunning-' . $this->order->order_id . '-end-15-days',
+    );
+    $this->assertDunningTaskScheduled($tasks);
+
+    // Assert that further hard decline notifications  (asking customer to
+    // update card) are not scheduled.
+    $tasks = array(
+      'dunning-' . $this->order->order_id . '-hard-decline-notification-2-days',
+      'dunning-' . $this->order->order_id . '-hard-decline-notification-5-days',
+      'dunning-' . $this->order->order_id . '-hard-decline-notification-8-days',
+      'dunning-' . $this->order->order_id . '-hard-decline-notification-11-days',
+    );
+    $this->assertDunningTaskNotScheduled($tasks);
+  }
+
+  /**
+   * Asserts that a dunning notification is sent to the customer.
+   */
+  protected function assertDunningNotification($email_id, $message = NULL) {
+    $sent_emails = array();
+    foreach ($this->drupalGetMails() as $email) {
+      $sent_emails[$email['id']] = $email['id'];
+    }
+    return $this->assert(isset($sent_emails[$email_id]), $message ? $message : t('Notification %message_id is sent.', array('%message_id' => $email_id)));
+  }
+
+  /**
+   * Asserts that dunning tasks are scheduled.
+   */
+  protected function assertDunningTaskScheduled($task_ids) {
+    $not_scheduled_tasks = drupal_map_assoc(($task_ids));
+    foreach (commerce_dunning_get_scheduled_tasks() as $task) {
+      unset($not_scheduled_tasks[$task['identifier']]);
+    }
+    return $this->assert(empty($not_scheduled_tasks), t('Following tasks are scheduled: %task_ids.', array('%task_ids' => implode(', ', $task_ids))));
+  }
+
+  /**
+   * Asserts that dunning tasks are not scheduled.
+   */
+  protected function assertDunningTaskNotScheduled($task_ids) {
+    $task_ids = drupal_map_assoc($task_ids);
+    $scheduled = FALSE;
+    foreach (commerce_dunning_get_scheduled_tasks() as $task) {
+      if (isset($task_ids[$task['identifier']])) {
+        $scheduled = TRUE;
+      }
+    }
+    return $this->assert(!$scheduled, t('Following tasks are not scheduled: %task_ids.', array('%task_ids' => implode(', ', $task_ids))));
+  }
+
+}
