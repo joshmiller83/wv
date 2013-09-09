@@ -93,5 +93,5 @@ function wv_theme_preprocess_node(&$variables) {
 //menu_rebuild();
 function wv_menu_alter(&$items) {
   $items['cart']['title'] = t('Gifts from the Heart');
-  //dpm($items);
+  dpm($items);
 }

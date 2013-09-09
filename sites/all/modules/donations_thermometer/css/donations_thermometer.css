@@ -1,0 +1,48 @@
+
+/* Small Size */
+
+.gauge-Small,
+.gauge-small {
+  width: 37px;
+  height: 211px;
+  position:relative;
+  background: #333 url(../images/gauge-small.gif) top left no-repeat;
+}
+
+.gauge-Small #campaign-progress-current,
+.gauge-small #campaign-progress-current {
+  position:absolute;
+  left: 0px;
+  bottom: 0px;
+  text-align: center;
+  width: 100%;
+  background: red url(../images/gauge-small.gif) bottom right no-repeat;
+}
+
+/* Large Size */
+
+.gauge-Large,
+.gauge-large{
+  width: 77px;
+  height: 442px;
+  position:relative;
+  background: #333 url(../images/gauge.gif) top left no-repeat;
+}
+.gauge-Large #campaign-progress-current,
+.gauge-large #campaign-progress-current {
+  position:absolute;
+  left: 0px;
+  bottom: 0px;
+  text-align: center;
+  width: 100%;
+  background: red url(../images/gauge.gif) bottom right no-repeat;
+}
+
+/* General Size */
+
+.gauge-Large #campaign-progress-current p,
+.gauge-Small #campaign-progress-current p,
+.gauge-large #campaign-progress-current p,
+.gauge-small #campaign-progress-current p {
+  display:none;
+}
