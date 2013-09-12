@@ -526,31 +526,42 @@ header#section-header {
     font-size: 16px;
     padding: 4px 16px; }
 
+.context-minicampaigns article.node .field-name-field-accepting-donations form.commerce-add-to-cart,
 .node-type-donation-product article.node .field-name-field-product form.commerce-add-to-cart {
   padding-top: 20px; }
+  .context-minicampaigns article.node .field-name-field-accepting-donations form.commerce-add-to-cart label,
   .node-type-donation-product article.node .field-name-field-product form.commerce-add-to-cart label {
     float: none; }
+    .context-minicampaigns article.node .field-name-field-accepting-donations form.commerce-add-to-cart label:after,
     .node-type-donation-product article.node .field-name-field-product form.commerce-add-to-cart label:after {
       content: none; }
+  .context-minicampaigns article.node .field-name-field-accepting-donations form.commerce-add-to-cart .select-or-other,
   .node-type-donation-product article.node .field-name-field-product form.commerce-add-to-cart .select-or-other {
     position: relative; }
+  .context-minicampaigns article.node .field-name-field-accepting-donations form.commerce-add-to-cart .form-item,
   .node-type-donation-product article.node .field-name-field-product form.commerce-add-to-cart .form-item {
     padding-bottom: 5px; }
+  .context-minicampaigns article.node .field-name-field-accepting-donations form.commerce-add-to-cart .form-radios .form-item label:before,
   .node-type-donation-product article.node .field-name-field-product form.commerce-add-to-cart .form-radios .form-item label:before {
     content: '$'; }
+  .context-minicampaigns article.node .field-name-field-accepting-donations form.commerce-add-to-cart .form-radios .form-item:last-child label:before,
   .node-type-donation-product article.node .field-name-field-product form.commerce-add-to-cart .form-radios .form-item:last-child label:before {
     content: none; }
+  .context-minicampaigns article.node .field-name-field-accepting-donations form.commerce-add-to-cart .form-radios .form-item:last-child label:after,
   .node-type-donation-product article.node .field-name-field-product form.commerce-add-to-cart .form-radios .form-item:last-child label:after {
     content: ' $'; }
+  .context-minicampaigns article.node .field-name-field-accepting-donations form.commerce-add-to-cart .form-item-line-item-fields-field-donation2-und-other,
   .node-type-donation-product article.node .field-name-field-product form.commerce-add-to-cart .form-item-line-item-fields-field-donation2-und-other {
     display: block !important;
     width: 150px;
     position: absolute;
     bottom: 0;
     left: 70px; }
+  .context-minicampaigns article.node .field-name-field-accepting-donations form.commerce-add-to-cart .form-submit,
   .node-type-donation-product article.node .field-name-field-product form.commerce-add-to-cart .form-submit {
     margin-top: 15px; }
 
+.context-minicampaigns #edit-product-id,
 .node-type-donation-product #edit-product-id {
   display: none; }
 
@@ -564,3 +575,108 @@ header#section-header {
 .node-type-sponsor-a-child article.node .field-name-field-recurring-product form.commerce-add-to-cart {
   background: none;
   padding-top: 0; }
+
+.node-type-micro-loan form.commerce-add-to-cart {
+  background-color: #EFEFEF !important;
+  background-image: none !important;
+  padding: 12px 17px !important;
+  position: relative; }
+  .node-type-micro-loan form.commerce-add-to-cart .microloan {
+    position: relative;
+    height: 235px; }
+    .node-type-micro-loan form.commerce-add-to-cart .microloan .numbers {
+      float: left;
+      width: 55%; }
+      .node-type-micro-loan form.commerce-add-to-cart .microloan .numbers > div {
+        font-size: 14px;
+        line-height: 14px;
+        padding-bottom: 10px;
+        color: #A7A7A7; }
+        .node-type-micro-loan form.commerce-add-to-cart .microloan .numbers > div span {
+          display: block;
+          font-size: 26px;
+          line-height: 26px;
+          color: #616060;
+          font-weight: 100; }
+    .node-type-micro-loan form.commerce-add-to-cart .microloan .gauge-Small {
+      position: absolute !important;
+      top: 0;
+      right: 40px; }
+  .node-type-micro-loan form.commerce-add-to-cart #edit-line-item-fields {
+    position: absolute;
+    bottom: 12px;
+    left: 17px; }
+    .node-type-micro-loan form.commerce-add-to-cart #edit-line-item-fields .form-item {
+      padding-bottom: 0; }
+  .node-type-micro-loan form.commerce-add-to-cart .form-submit.give-now {
+    margin: 0 !important;
+    position: absolute;
+    bottom: 12px;
+    left: 90px; }
+
+body.page-product-category-2 form.commerce-add-to-cart {
+  padding-top: 0 !important;
+  background-image: none !important; }
+  body.page-product-category-2 form.commerce-add-to-cart > div > div.form-wrapper {
+    display: inline-block; }
+    body.page-product-category-2 form.commerce-add-to-cart > div > div.form-wrapper .form-item {
+      padding: 0; }
+  body.page-product-category-2 form.commerce-add-to-cart .form-submit.give-now {
+    margin: 0 !important;
+    display: inline-block; }
+  body.page-product-category-2 form.commerce-add-to-cart .gauge-Small {
+    display: none; }
+  body.page-product-category-2 form.commerce-add-to-cart .numbers {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px; }
+    body.page-product-category-2 form.commerce-add-to-cart .numbers > div {
+      font-size: 12px;
+      line-height: 14px;
+      padding-bottom: 10px;
+      color: #A7A7A7; }
+      body.page-product-category-2 form.commerce-add-to-cart .numbers > div span {
+        display: block;
+        font-size: 22px;
+        line-height: 22px;
+        color: #616060;
+        font-weight: 100; }
+    body.page-product-category-2 form.commerce-add-to-cart .numbers .needed {
+      display: none; }
+  body.page-product-category-2 form.commerce-add-to-cart .products-per-collection > .views-row {
+    position: relative; }
+
+.view-collection-products .view-header, .view-collection-taxonomy-term .view-header {
+  display: none; }
+
+.group-campaign-photos .galleryformatter {
+  float: left;
+  margin-right: 20px; }
+
+.horizontal-tabs-pane {
+  padding: 15px 25px !important; }
+
+.jcarousel-skin-default .jcarousel-item {
+  height: 150px !important; }
+
+.node-type-donor-group .breadcrumb {
+  display: none; }
+.node-type-donor-group .pane-node-field-group-logo {
+  margin: 30px 0 15px 0;
+  border-bottom: 1px solid #333;
+  padding-bottom: 30px; }
+.node-type-donor-group h2.pane-title {
+  font-weight: 100;
+  color: #616060; }
+.node-type-donor-group .grid-8 .inside {
+  padding: 0 15px; }
+
+.page-donor-groups .breadcrumb {
+  display: none; }
+.page-donor-groups .region-content-inner {
+  padding: 10px 20px; }
+.page-donor-groups #page-title {
+  margin-left: 0;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #333; }

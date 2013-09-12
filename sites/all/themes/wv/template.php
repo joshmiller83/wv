@@ -48,8 +48,62 @@ function wv_form_commerce_cart_add_to_cart_form_alter(&$form, &$form_state) {
       $form['submit']['#value'] = t('Sponsor '.$product_loaded->title.' Today!');
     }
   }
+  if ($product->type == 'micro_loan') {
+    // Full Loans
+    $full_loan = substr($product->commerce_price['und'][0]['amount'],0,-2);
+    $amount_purchased = _wv_product_purchased_summedup($product->product_id);
+    $percent_left = ($amount_purchased["total"]/$full_loan)*100;
+    $left_to_purchase = $full_loan - $amount_purchased["total"];
+    $form['line_item_fields']['field_micro_loan_donation'][LANGUAGE_NONE]['#options'] = array();
+    unset($form['line_item_fields']['field_micro_loan_donation'][LANGUAGE_NONE]['#title']);
+    if ($left_to_purchase > 100) {
+      foreach (range(0,100,25) as $donation_amount) {
+        $form['line_item_fields']['field_micro_loan_donation'][LANGUAGE_NONE]['#options'][$donation_amount] = '$'.$donation_amount;
+      }
+      foreach (range(100,$left_to_purchase,100) as $donation_amount) {
+        $form['line_item_fields']['field_micro_loan_donation'][LANGUAGE_NONE]['#options'][$donation_amount] = '$'.$donation_amount;
+      }
+      $form['line_item_fields']['field_micro_loan_donation'][LANGUAGE_NONE]['#options'][$left_to_purchase] = '$'.$left_to_purchase;
+    } else {
+      foreach (range(25,$left_to_purchase,25) as $donation_amount) {
+        $form['line_item_fields']['field_micro_loan_donation'][LANGUAGE_NONE]['#options'][$donation_amount] = '$'.$donation_amount;
+      }
+    }
+    $form['thermometer']['#markup'] = '<div class="microloan">
+    <div class="numbers">
+      <div class="full"><span>$'.$full_loan.'</span>Loan Amount</div>
+      <div class="needed"><span>$'.$left_to_purchase.'</span>Still Neeeded</div>
+      <div class="raised"><span>'.round($percent_left,0).'%</span>Loan Raised</div>
+      <div class="lenders"><span>'.$amount_purchased["lenders"].'</span>Lenders</div>
+    </div>
+    <div class="gauge-Small"><div class="current-value" id="campaign-progress-current" style="height: '.$percent_left.'%;"><p>'.$percent_left.'%</p></div></div></div>';
+    $form['submit']['#value'] = t('Donate');
+  }
 }
 
+
+function _wv_product_purchased_summedup($pid) {
+  $product_ids = array();
+  foreach (commerce_order_load_multiple(array(), array('status'=>'pending'), TRUE) as $order) {
+    foreach (entity_metadata_wrapper('commerce_order', $order)->commerce_line_items as $delta => $line_item_wrapper) {
+      if (in_array($line_item_wrapper->type->value(), commerce_product_line_item_types())) {
+        $id = $line_item_wrapper->commerce_product->product_id->raw();
+        $amount = substr($line_item_wrapper->commerce_total->amount->raw(),0,-2);
+        $product_ids[$id]["total"] += $amount;
+        if (@$product_ids[$id]["lenders"]) {
+          $product_ids[$id]["lenders"]++;
+        } else {
+          $product_ids[$id]["lenders"] = 1;
+        }
+      }
+    }
+  }
+  if (@$product_ids[$pid]) {
+    return $product_ids[$pid];
+  } else {
+    return array("total"=>0,"lenders"=>0);
+  }
+}
 
 /**
  * Preprocess variables for html.tpl.php

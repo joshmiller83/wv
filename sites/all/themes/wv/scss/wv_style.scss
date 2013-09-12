@@ -621,6 +621,7 @@ header#section-header {
     padding: 4px 16px;
   }
 }
+.context-minicampaigns article.node .field-name-field-accepting-donations form.commerce-add-to-cart,
 .node-type-donation-product article.node .field-name-field-product form.commerce-add-to-cart {
   padding-top: 20px;
   label {
@@ -659,6 +660,7 @@ header#section-header {
     margin-top: 15px;
   }
 }
+.context-minicampaigns #edit-product-id,
 .node-type-donation-product #edit-product-id {
   display: none;
 }
@@ -675,5 +677,136 @@ header#section-header {
   .field-name-field-recurring-product form.commerce-add-to-cart {
     background: none;
     padding-top: 0;
+  }
+}
+.node-type-micro-loan form.commerce-add-to-cart {
+  background-color: #EFEFEF !important;
+  background-image: none !important;
+  padding: 12px 17px !important;
+  position: relative;
+  .microloan {
+    position: relative;
+    height: 235px;
+    .numbers {
+      float: left;
+      width: 55%;
+      > div {
+        font-size: 14px;
+        line-height: 14px;
+        padding-bottom: 10px;
+        color: #A7A7A7;
+        span {
+          display: block;
+          font-size: 26px;
+          line-height: 26px;
+          color: #616060;
+          font-weight: 100;
+        }
+      }
+    }
+    .gauge-Small {
+      position: absolute !important;
+      top: 0;
+      right: 40px;
+    }
+  }
+  #edit-line-item-fields {
+    position: absolute;
+    bottom: 12px;
+    left: 17px;
+    .form-item {
+      padding-bottom: 0;
+    }
+  }
+  .form-submit.give-now {
+    margin: 0 !important;
+    position: absolute;
+    bottom: 12px;
+    left: 90px;
+  }
+}
+body.page-product-category-2 form.commerce-add-to-cart {
+  padding-top: 0 !important;
+  background-image: none !important;
+  > div > div.form-wrapper {
+    display: inline-block;
+    .form-item {
+      padding: 0;
+    }
+  }
+  .form-submit.give-now {
+    margin: 0 !important;
+    display: inline-block;
+  }
+  .gauge-Small {
+    display: none;
+  }
+  .numbers {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    >div {
+      font-size: 12px;
+      line-height: 14px;
+      padding-bottom: 10px;
+      color: #A7A7A7;
+      span {
+        display: block;
+        font-size: 22px;
+        line-height: 22px;
+        color: #616060;
+        font-weight: 100;
+      }
+    }
+    .needed {
+      display: none;
+    }
+  }
+  .products-per-collection > .views-row {
+    position: relative;
+  }
+}
+.view-collection-products .view-header, .view-collection-taxonomy-term .view-header {
+  display: none;
+}
+.group-campaign-photos .galleryformatter {
+  float: left;
+  margin-right: 20px;
+}
+.horizontal-tabs-pane {
+  padding: 15px 25px !important;
+}
+.jcarousel-skin-default .jcarousel-item {
+  height: 150px !important;
+}
+.node-type-donor-group {
+  .breadcrumb {
+    display: none;
+  }
+  .pane-node-field-group-logo {
+    margin: 30px 0 15px 0;
+    border-bottom: 1px solid #333;
+    padding-bottom: 30px;
+  }
+  h2.pane-title {
+    font-weight: 100;
+    color: #616060;
+  }
+  .grid-8 .inside {
+    padding: 0 15px;
+  }
+}
+.page-donor-groups {
+  .breadcrumb {
+    display: none;
+  }
+  .region-content-inner {
+    padding: 10px 20px;
+  }
+  #page-title {
+    margin-left: 0;
+    padding-bottom: 30px;
+    border-bottom:  1px solid #333;
   }
 }
