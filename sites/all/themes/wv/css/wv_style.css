@@ -417,29 +417,31 @@ header#section-header {
   display: block;
   height: 34px; }
 
-.block-1 .need-help {
-  background: #eff0f1;
-  border: 1px solid #DCDDDE;
-  padding: 10px;
-  height: 43px;
-  margin-bottom: 20px; }
-  .block-1 .need-help .nh-main {
-    float: left;
-    width: 59%;
-    font-size: 110%; }
-    .block-1 .need-help .nh-main .nh-text {
-      font-weight: bold;
-      font-size: 125%; }
-  .block-1 .need-help .nh-secondary {
-    float: right;
-    width: 40%;
-    font-size: 85%;
-    color: #666567;
-    text-align: right; }
-.block-1 .bottom_imgs {
-  background: url(../new_img/imgs_bottom.png) center center no-repeat;
-  height: 82px;
-  border: 1px solid #DCDDDE; }
+.block-1 {
+  margin-top: 20px; }
+  .block-1 .need-help {
+    background: #eff0f1;
+    border: 1px solid #DCDDDE;
+    padding: 10px;
+    height: 43px;
+    margin-bottom: 20px; }
+    .block-1 .need-help .nh-main {
+      float: left;
+      width: 59%;
+      font-size: 110%; }
+      .block-1 .need-help .nh-main .nh-text {
+        font-weight: bold;
+        font-size: 125%; }
+    .block-1 .need-help .nh-secondary {
+      float: right;
+      width: 40%;
+      font-size: 85%;
+      color: #666567;
+      text-align: right; }
+  .block-1 .bottom_imgs {
+    background: url(../new_img/imgs_bottom.png) center center no-repeat;
+    height: 82px;
+    border: 1px solid #DCDDDE; }
 
 .responsive-layout-narrow .block-2 .block-inner > .content .returning input {
   width: 141px; }
@@ -680,3 +682,26 @@ body.page-product-category-2 form.commerce-add-to-cart {
   margin-left: 0;
   padding-bottom: 30px;
   border-bottom: 1px solid #333; }
+
+.page-checkout #commerce-checkout-form-checkout fieldset label,
+.page-checkout #commerce-checkout-form-review {
+  float: inherit !important;
+  width: inherit !important; }
+
+.page-checkout #commerce-checkout-form-checkout fieldset legend,
+.page-checkout #commerce-checkout-form-review fieldset legend {
+  background-color: #005888;
+  background-image: linear-gradient(to bottom, #003c5c, #005888);
+  color: #FFF;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 16px;
+  padding: 5px 8px;
+  width: 90%; }
+
+#edit-customer-profile-billing-commerce-customer-address {
+  display: none; }
+
+.page-checkout #page-title,
+.page-checkout .form-required {
+  display: none; }

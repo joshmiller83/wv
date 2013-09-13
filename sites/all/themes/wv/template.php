@@ -1,5 +1,11 @@
 <?php
 
+function wv_form_alter(&$form, &$form_state) {
+  if ($form['#form_id'] == "commerce_checkout_form_checkout") {
+    $form['buttons']['continue']['#value'] = t("Submit Payment");
+  }
+}
+
 /**
 * Implements hook_form_FORMID_alter() to change the Add to Cart button to an image.
 */

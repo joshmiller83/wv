@@ -1,4 +1,13 @@
 (function ($) {
+  Drupal.behaviors.wv_checkout = {
+    attach: function(context, settings) {
+      $("#edit-customer-profile-billing-addressbook").change(function(){
+        $(".page-checkout #commerce-checkout-form-checkout .field-type-addressfield").show();
+        console.log("Hello World");
+      });
+    }
+  }
+
   // Handle user toolbar when user is admin and have admin toolbar enabled.
   Drupal.behaviors.commerce_kickstart_theme_custom_toolbar = {
     attach: function(context, settings) {

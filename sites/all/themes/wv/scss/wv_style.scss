@@ -487,6 +487,7 @@ header#section-header {
   height: 34px;
 }
 .block-1 {
+  margin-top: 20px;
   .need-help {
     background: #eff0f1;
     border: 1px solid #DCDDDE;
@@ -809,4 +810,27 @@ body.page-product-category-2 form.commerce-add-to-cart {
     padding-bottom: 30px;
     border-bottom:  1px solid #333;
   }
+}
+.page-checkout #commerce-checkout-form-checkout fieldset label,
+.page-checkout #commerce-checkout-form-review {
+  float: inherit !important;
+  width: inherit !important;
+}
+.page-checkout #commerce-checkout-form-checkout fieldset legend,
+.page-checkout #commerce-checkout-form-review fieldset legend {
+    background-color: #005888;
+    background-image: linear-gradient(to bottom, #003c5c, #005888);
+    color: #FFF;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 16px;
+    padding: 5px 8px;
+    width: 90%;
+}
+#edit-customer-profile-billing-commerce-customer-address {
+  display: none;
+}
+.page-checkout #page-title,
+.page-checkout .form-required {
+  display: none;
 }
